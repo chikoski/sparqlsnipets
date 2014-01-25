@@ -1,4 +1,4 @@
-define(["snipet_list", "snipet"], function(SnipetList, Snipet){
+define(["model/snipet_list", "model/snipet"], function(SnipetList, Snipet){
 
 	var THRESHOLD_BACKUP = 3;
 
