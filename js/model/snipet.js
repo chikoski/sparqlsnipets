@@ -1,12 +1,11 @@
-define(["lib/backbone"], function(Backbone){
+define(["lib/backbone", "lib/underscore"], function(Backbone){
 
 	var Snipet = Backbone.Model.extend({
-
-		initialize: function(sparql, result, description){
-			this.set("sparql", sparql);
-			this.set("result", result);
-			this.set("description", description);
-			this.set("timestamp", new Date());
+		defaults: {
+			endpoint: "",
+			sparql: "",
+			result: "",
+			description: ""
 		}
 	});
 

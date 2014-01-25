@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles/app.css">
     <link rel="icon" href="images/icon/favicon.ico" type="image/vnd.microsoft.icon" />
   </head>
-  <body>
+  <body id="main">
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -25,34 +25,34 @@
       </div>
     </div>
 
-    <section class="step container">
+    <script type="text/x-underscore-template" id="template-endpoint">
       <div class=panel>
-        <input type="text" placeholder="SPQARL endpoint" class="form-control" id="endpoint">
+        <input type="text" placeholder="SPQARL endpoint" class="form-control input" id="endpoint" value="<%- endpoint %>">
         <button class="next form-control btn btn-default">
           <span class="glyphicon glyphicon-circle-arrow-down"></span>
         </button>
       </div>
-    </section>
+    </script>
 
-    <section class="step container">
+    <script type="text/x-underscore-template" id="template-sparql">
       <div class=panel>
-        <textarea rows="10" placeholder="SPQARL" class="form-control" id="sparql"></textarea>
+        <textarea rows="10" placeholder="SPQARL" class="form-control input" id="sparql"></textarea>
         <button class="next form-control btn btn-default">
           <span class="glyphicon glyphicon-circle-arrow-down"></span>
         </button>
       </div>
-    </section>
+    </script>
 
-    <section class="step container">
+    <script type="text/x-underscore-template" id="template-result">
       <div class=panel>
         <div id="result">
         </div>
-        <textarea rows="5" placeholder="comment" class="form-control" id="description"></textarea>
+        <textarea rows="5" placeholder="comment" class="form-control input" id="description"></textarea>
         <button class="form-control btn btn-default prev">
           <span class="glyphicon glyphicon-circle-arrow-up"></span>
         </button>
       </div>
-    </section>
+    </script>
 
     <script data-main="js/app" src="lib/require.js"></script>
   </body>

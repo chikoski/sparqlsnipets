@@ -1,14 +1,6 @@
-define(["model/snipet_list", "model/snipet"], function(SnipetList, Snipet){
+define(["lib/underscore", "lib/backbone", "model/snipet_list", "model/snipet"], function(_, Backbone, SnipetList, Snipet){
 
 	var THRESHOLD_BACKUP = 3;
-
-	var App = function(){
-		this.snipetList = new SnipetList();
-	};
-
-	var edit = function(snipet, type, value){
-		snipet.set(type, value);
-	};
 
 	var updateRevision = function(){
 		this._revision = (this._revision || 0) + 1;
@@ -18,26 +10,35 @@ define(["model/snipet_list", "model/snipet"], function(SnipetList, Snipet){
 		}
 	};
 
-	App.prototype = {
+	var App = function(){
+		this.snipetList = new SnipetList();
+	};
+
+	App.prototype = _.extend({
 		newSnipet: function(){
 			this.latestSnipet = new Snipet();
 			this._revision = 0;
+			this.trigger("newSnipet");
 		},
 		finishEditting: function(){
 			if(this.latestSnipet){
 				this.snipetList.add(this.latestSnipet);
 			}
+			this.trigger("finishEditting");
+		},
+		edit: function(type, value){
+			this.latestSnipet.set(type, value); // XXX type should be checked
 		},
 		editEndpoint: function(url){
-			edit(this.latestSnipet, "endpoint", url);
+			this.edit("endpoint", url);
 			updateRevision.call(this);
 		},
 		editSPARQL: function(sparql){
-			edit(this.latestSnipet, "sparql", sparql);
+			this.edit("sparql", sparql);
 			updateRevision.call(this);
 		},
 		editDescription: function(description){
-			edit(this.latestSnipet, "description", description);
+			this.edit("description", description);
 			updateRevision.call(this);
 		},
 		restore: function(){
@@ -47,12 +48,14 @@ define(["model/snipet_list", "model/snipet"], function(SnipetList, Snipet){
 			}else{
 				this.latestSnipet = new Snipet();
 			}
+			this.trigger("restore");
 		},
 		backup: function(){
 			window.sessionStorage.setItem("latestSnipet",
 										  this.latestSnipet.toJSON());
+			this.trigger("backup");
 		}
-	};
+	}, Backbone.Events);
 	
 	return App;
 });
