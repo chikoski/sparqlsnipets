@@ -25,7 +25,6 @@ require(["lib/bootstrap", "lib/jquery", "main"], function(Bootstrap, $, App){
 	var scrollbar = $("html,body");
 	var app = new App();
 
-
 	var saveAllModifications = function(){
 		app.editEndpoint(elms.endpoint.val());
 		app.editSPARQL(elms.sparql.val());
@@ -43,7 +42,7 @@ require(["lib/bootstrap", "lib/jquery", "main"], function(Bootstrap, $, App){
 		saveAllModifications();
 		scrollTo(step);
 	};
-	
+
 //	app.restore();
 	app.newSnipet();
 	$steps.height($(window).height());
