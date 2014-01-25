@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>SPARQL Snipets</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">SPARQL Snipets</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Login</a></li>
+              <li><a href="#">View history</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="step container">
+      <div class=panel>
+        <input type="text" placeholder="SPQARL endpoint" class="form-control" id="endpoint">
+        <button class="next form-control btn btn-default">
+          <span class="glyphicon glyphicon-circle-arrow-down"></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="step container">
+      <div class=panel>
+        <textarea rows="10" placeholder="SPQARL" class="form-control" id="sparql"></textarea>
+        <button class="next form-control btn btn-default">
+          <span class="glyphicon glyphicon-circle-arrow-down"></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="step container">
+      <div class=panel>
+        <div id="result">
+        </div>
+        <textarea rows="5" placeholder="comment" class="form-control" id="description"></textarea>
+        <button class="form-control btn btn-default prev">
+          <span class="glyphicon glyphicon-circle-arrow-up"></span>
+        </button>
+      </div>
+    </section>
+
+    <script data-main="js/app" src="lib/require.js"></script>
+  </body>
+</html>

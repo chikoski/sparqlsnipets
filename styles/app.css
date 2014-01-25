@@ -7,16 +7,29 @@ body{
     position: relative;
 }
 
-.next{
+.next, .prev{
     margin-top: 2em;
+	backgruond-color: transparent;
+	border-style: none;
+	box-shadow: none;
 }
 .finish{
 	margin-top: 2em;
+}
+
+.btn{
+	border-style: no-border;
+}
+
+.btn-group-justified .btn{
+	width: auto;
 }
 
 .panel{
     position: absolute;
     width: 100%;
     top: 30%;
+	margin: 0;
     margin-top: -4em;
+	box-shadow: none;
 }

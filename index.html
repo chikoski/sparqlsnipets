@@ -4,7 +4,7 @@
     <title>SPARQL Snipets</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="styles/intro.css">
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -13,44 +13,21 @@
           <a class="navbar-brand" href="/">SPARQL Snipets</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Login</a></li>
-              <li><a href="#">View history</a></li>
-            </ul>
+          <li>
+            <a href="http://github.com/chikoski/sparqlsnipets">View in Github</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <section class="step container">
-      <div class=panel>
-        <input type="text" placeholder="SPQARL endpoint" class="form-control" id="endpoint">
-        <button class="next form-control btn">
-          <span class="glyphicon glyphicon-circle-arrow-down"></span>
-        </button>
-      </div>
+    <section class="container jumbotron">
+      <h1>SPARQL Snipets</h1>
+      <p class="control">
+        <a class="btn btn-primary" href="app.html">Boot</a>
+        <a class="btn btn-primary" data-role="installation-button" href="manifest.webapp">Install to your local system</a>
+      </p>
     </section>
 
-    <section class="step container">
-      <div class=panel>
-        <textarea rows="10" placeholder="SPQARL" class="form-control" id="sparql"></textarea>
-        <button class="next form-control btn">
-          <span class="glyphicon glyphicon-circle-arrow-down"></span>
-        </button>
-      </div>
-    </section>
-
-    <section class="step container">
-      <div class=panel>
-        <div id="result">
-        </div>
-        <textarea rows="5" placeholder="comment" class="form-control" id="comment"></textarea>
-        <button class="form-control btn btn-primary finish">finish</button>
-      </div>
-    </section>
-
-    <script data-main="js/app" src="lib/require.js"></script>
+    <script src="js/install_apps.js"></script>
   </body>
 </html>
