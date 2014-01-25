@@ -31,8 +31,21 @@ require(["lib/bootstrap", "lib/jquery", "main"], function(Bootstrap, $, App){
 		app.editSPARQL(elms.sparql.val());
 		app.editDescription(elms.description.val());
 	};
+
+	var scrollTo = function(to, offset){
+		if(to != null){
+			offset = offset || 0;
+			scrollbar.animate({scrollTop: to.offset().top + offset});
+		}
+	};
+
+	var transitTo = function(step){
+		saveAllModifications();
+		scrollTo(step);
+	};
 	
-	app.restore();
+//	app.restore();
+	app.newSnipet();
 	$steps.height($(window).height());
 
 	var elms = {
@@ -57,9 +70,14 @@ require(["lib/bootstrap", "lib/jquery", "main"], function(Bootstrap, $, App){
 
 	$(".next").click(function(event){
 		event.preventDefault();
-		saveAllModifications();
 		var next_step = $(this).parents(".step").next();
-		scrollbar.animate({scrollTop: next_step.offset().top});
+		transitTo(next_step);
+	});
+
+	$(".prev").click(function(event){
+		event.preventDefault();
+		var next_step = $(this).parents(".step").prev();
+		transitTo(next_step);
 	});
 
 	$(".finish").click(function(event){
