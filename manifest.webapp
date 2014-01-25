@@ -1,0 +1,21 @@
+{
+	"name": "SPARQL Snipets",
+	"description": "A platform to grow up your SPARQL query",
+	"launch_path": "/app.html",
+	"icons": {
+		"30": "/images/icon/icon-30.png",
+		"32": "/images/icon/icon-32.png",
+		"60": "/images/icon/icon-60.png",
+		"64": "/images/icon/icon-64.png",
+		"90": "/images/icon/icon-90.png",
+		"120": "/images/icon/icon-120.png",
+		"128": "/images/icon/icon-128.png"
+	},
+	"version": "0.1",
+	"developer": {
+		"name": "N. Shimizu",
+		"url": "http://chikoski.info/"
+	},
+	"default_locale": "ja",
+	"fullscreen": "true"
+}
