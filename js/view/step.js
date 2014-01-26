@@ -5,7 +5,8 @@ define(["lib/backbone", "lib/underscore", "lib/jquery"], function(Backbone, _, $
 		events: {
 			"change .input": "changed",
 			"click .next": "next",
-			"click .prev": "prev"
+			"click .prev": "prev",
+			"click .send-query": "sendQuery"
 		},
 		initialize: function(options){
 			this.app = options.app;
@@ -24,6 +25,9 @@ define(["lib/backbone", "lib/underscore", "lib/jquery"], function(Backbone, _, $
 		},
 		prev: function(){
 			this.trigger("prev");
+		},
+		sendQuery: function(){
+			this.trigger("send-query");
 		},
 		changed: function(event){
 			var value = event.target.value;

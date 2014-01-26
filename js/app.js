@@ -21,7 +21,7 @@ requirejs.config({
 	}
 });
 
-require(["main", "view"], function(App, View){
+require(["main", "view", "lib/jquery"], function(App, View, $){
 	var app = new App();
 	app.newSnipet();
 	var view = new View(app, {
@@ -29,6 +29,7 @@ require(["main", "view"], function(App, View){
 		endpoint: "#template-endpoint"
 	});
 	view.render();
+	$("body").append(view.$el);
 	
 /*
 	var transitTo = function(step){

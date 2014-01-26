@@ -1,4 +1,4 @@
-define(["lib/underscore", "lib/backbone", "model/snipet_list", "model/snipet"], function(_, Backbone, SnipetList, Snipet){
+define(["lib/underscore", "lib/backbone", "model/snipet_list", "model/snipet", "model/query", "model/query_result", "lib/jquery"], function(_, Backbone, SnipetList, Snipet, Query, QueryResult, $){
 
 	var THRESHOLD_BACKUP = 3;
 
@@ -54,6 +54,20 @@ define(["lib/underscore", "lib/backbone", "model/snipet_list", "model/snipet"], 
 			window.sessionStorage.setItem("latestSnipet",
 										  this.latestSnipet.toJSON());
 			this.trigger("backup");
+		},
+		sendQuery: function(){
+			if(this.latestSnipet != null){
+				var query = Query.createFromSnipet(this.latestSnipet);
+				var url = query.toURL();
+				if(url.length > 0){
+					return;
+				}
+			}
+			var response = new QueryResult({
+				status: 400,
+				message: "badrequest"
+			});
+			this.trigger("query-result", response);
 		}
 	}, Backbone.Events);
 	

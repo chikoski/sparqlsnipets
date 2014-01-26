@@ -1,6 +1,6 @@
 define(["lib/jquery", "lib/underscore", "lib/backbone", "view/step"], function($, _, Backbone, Step){
 
-	var PARTS = ["endpoint", "sparql", "result"];
+	var PARTS = ["endpoint", "sparql", "result", "description"];
 	var scrollbar = $("html,body");
 
 	var scrollTo = function(to, offset){
@@ -39,6 +39,7 @@ define(["lib/jquery", "lib/underscore", "lib/backbone", "view/step"], function($
 				app: self.app,
 				templateString: $(options[parts]).text()
 			});
+			self.listenTo(self.parts[parts], "send-query", self.sendQuery);
 		}
 		self.listenTo(self.app, "newSnipet", self.setSnipet);
 		if(self.app.latestSnipet != null){
@@ -52,36 +53,41 @@ define(["lib/jquery", "lib/underscore", "lib/backbone", "view/step"], function($
 		}
 	};
 
-	var AppView = function(app, options){
-		var self = this;
-		self.app = app;
-		options = {
-			main: options.main || "#main",
-			endpoint: options.endpoint || "#template-endpoint",			
-			sparql: options.sparql || "#template-sparql",
-			result: options.result || "#template-result"
-		};
-		self.main = $(options.main);
-		self.parts = {};
-
-		initParts.call(self, options);
-		
-	};
-
-	AppView.prototype = _.extend({
+	var AppView = Backbone.View.extend({
+		className: "main",
+		initialize: function(app, options){
+			var self = this;
+			self.app = app;
+			options = {
+				endpoint: options.endpoint || "#template-endpoint",			
+				sparql: options.sparql || "#template-sparql",
+				result: options.result || "#template-result",
+				description: options.result || "#template-description"
+			};
+			self.parts = {};
+			initParts.call(self, options);
+		},
 		render: function(){
 			for(var i = 0; i < PARTS.length; i++){
 				var parts = PARTS[i];
 				this.parts[parts].render();
-				this.main.append(this.parts[parts].$el);
+				this.$el.append(this.parts[parts].$el);
 			}
+			return this;
 		},
 		setSnipet: function(){
 			for(var parts in this.parts){
 				this.parts[parts].model = this.app.latestSnipet;
 			}
+		},
+		sendQuery: function(){
+			this.listenTo(this.app, "query-result", this.showQueryResult);
+			this.app.sendQuery();
+		},
+		showQueryResult: function(result){
+			console.log(result);
 		}
-	}, Backbone.Events);
+	});
 
 	return AppView;
 	
