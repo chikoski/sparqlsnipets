@@ -8,7 +8,7 @@ body{
 }
 
 .next, .prev{
-    margin-top: 2em;
+	margin: 0;
 	backgruond-color: transparent;
 	border-style: none;
 	box-shadow: none;
@@ -26,10 +26,11 @@ body{
 }
 
 .panel{
-    position: absolute;
     width: 100%;
-    top: 30%;
-	margin: 0;
-    margin-top: -4em;
+	padding-top: 100px;
 	box-shadow: none;
+}
+
+.main > .step:first-child > .panel{
+	padding: 0;
 }
